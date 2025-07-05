@@ -19,4 +19,4 @@ jobs:
           JIRA_PROJECT_KEY: ${{ secrets.JIRA_PROJECT_KEY }}
 
           JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
-          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.email }}
