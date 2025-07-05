@@ -17,7 +17,7 @@ jobs:
           github_issue_body: ${{ github.event.issue.body }}
         env:
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-          JIRA_ORG_NAME: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_ORG_NAME: ${{ secrets.JIRA_ORG_NAME }}
           JIRA_PROJECT_KEY: ${{ secrets.JIRA_PROJECT_KEY }}
           
           JIRA_EMAIL: ${{ github.event.issue.user.email }}
