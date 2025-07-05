@@ -8,26 +8,6 @@ jobs:
   create-jira:
     runs-on: ubuntu-latest
     steps:
-      - name: Get issue author email
-        id: get_email
-        shell: bash
-        run: |
-          echo "Getting email for user: ${{ github.event.issue.user.login }}"
-          
-          user_info=$(curl -s -H "Authorization: token ${{ github.token }}" \
-            "https://api.github.com/users/${{ github.event.issue.user.login }}")
-          
-          email=$(echo "$user_info" | jq -r '.email // empty')
-          
-          if [ -z "$email" ] || [ "$email" = "null" ]; then
-            echo "No public email found, using noreply format"
-            email="${{ github.event.issue.user.login }}@users.noreply.github.com"
-          else
-            echo "Found public email: $email"
-          fi
-          
-          echo "author_email=$email" >> $GITHUB_OUTPUT
-    
       - name: Run local Rust Jira Action
         uses: UHeeJoon/jira-actions@v1.0.0
         env:
@@ -38,5 +18,5 @@ jobs:
           JIRA_ORG_NAME: ${{ secrets.JIRA_ORG_NAME }}
           JIRA_PROJECT_KEY: ${{ secrets.JIRA_PROJECT_KEY }}
 
-          JIRA_EMAIL: ${{ steps.get_email.outputs.author_email }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
           ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
