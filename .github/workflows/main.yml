@@ -10,11 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Rust
-        uses: actions/setup-rust@v1
-        with:
-          rust-version: stable
-
       - name: Run local Rust Jira Action
         uses: UHeeJoon/jira-actions@main
         with:
