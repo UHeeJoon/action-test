@@ -1,0 +1,28 @@
+name: Create Jira Issue from GitHub Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  create-jira:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: actions/setup-rust@v1
+        with:
+          rust-version: stable
+
+      - name: Run local Rust Jira Action
+        uses: UHeeJoon/jira-actions@main
+        with:
+          github_issue_title: ${{ github.event.issue.title }}
+          github_issue_body: ${{ github.event.issue.body }}
+        env:
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_ORG_NAME: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_PROJECT_KEY: ${{ secrets.JIRA_PROJECT_KEY }}
+          
+          JIRA_EMAIL: ${{ gibhub.event.issue.user.email }}
