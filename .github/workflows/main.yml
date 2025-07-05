@@ -25,4 +25,4 @@ jobs:
           JIRA_ORG_NAME: ${{ secrets.JIRA_BASE_URL }}
           JIRA_PROJECT_KEY: ${{ secrets.JIRA_PROJECT_KEY }}
           
-          JIRA_EMAIL: ${{ gibhub.event.issue.user.email }}
+          JIRA_EMAIL: ${{ github.event.issue.user.email }}
