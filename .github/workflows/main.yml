@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: 'Uheejoon/jira-actions'
-          ref: 'main'
+          ref: 'v1.0.0'
           
       - name: Install Rust
         uses: actions-rs/toolchain@v1
@@ -20,7 +20,7 @@ jobs:
           override: true
           
       - name: Run local Rust Jira Action
-        uses: UHeeJoon/jira-actions@main
+        uses: UHeeJoon/jira-actions@v1.0.0
         with:
           github_issue_title: ${{ github.event.issue.title }}
           github_issue_body: ${{ github.event.issue.body }}
