@@ -9,7 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          repository: 'Uheejoon/jira-actions'
+          ref: 'main'
+          
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          
       - name: Run local Rust Jira Action
         uses: UHeeJoon/jira-actions@main
         with:
